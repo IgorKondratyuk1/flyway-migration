@@ -28,7 +28,7 @@ public class StoreEntity {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "laptop_id", referencedColumnName = "id")
-    private LaptopEntity laptop;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "laptop_id", referencedColumnName = "id")
+//    private LaptopEntity laptop;
 }

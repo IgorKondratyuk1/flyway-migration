@@ -27,7 +27,7 @@ public class LaptopEntity {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
-//    @ManyToOne()
-//    @JoinColumn(name = "store_id")
-//    private StoreEntity storeId;
+    @ManyToOne()
+    @JoinColumn(name = "store_id")
+    private StoreEntity storeId;
 }

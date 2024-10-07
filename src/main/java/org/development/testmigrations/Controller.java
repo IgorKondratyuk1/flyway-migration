@@ -28,21 +28,21 @@ public class Controller {
     }
 
 
-    @GetMapping("/create-store/{id}")
-    public ResponseEntity<?> createStore(@PathVariable("id") String laptopId) {
-        Optional<LaptopEntity> laptopEntity = laptopRepository.findById(UUID.fromString(laptopId));
-
-        if (laptopEntity.isEmpty()) {
-            return new ResponseEntity(HttpStatus.NOT_FOUND);
-        }
-
-        StoreEntity storeEntity = new StoreEntity(UUID.randomUUID(), "Store " + UUID.randomUUID(), "Test", LocalDateTime.now(), laptopEntity.get());
+    @GetMapping("/create-store")
+    public ResponseEntity<?> createStore() {
+        StoreEntity storeEntity = new StoreEntity(UUID.randomUUID(), "Store " + UUID.randomUUID(), "Test", LocalDateTime.now());
         return new ResponseEntity<>(storeRepository.save(storeEntity), HttpStatus.OK);
     }
 
-    @GetMapping("/create-laptop")
-    public ResponseEntity<?> createLaptop() {
-        LaptopEntity laptop = new LaptopEntity(UUID.randomUUID(), "Laptop " + UUID.randomUUID(), "Descr", LocalDateTime.now());
+    @GetMapping("/create-laptop/{id}")
+    public ResponseEntity<?> createLaptop(@PathVariable("id") String storeId) {
+        Optional<StoreEntity> storeEntity = storeRepository.findById(UUID.fromString(storeId));
+
+        if (storeEntity.isEmpty()) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+
+        LaptopEntity laptop = new LaptopEntity(UUID.randomUUID(), "Laptop " + UUID.randomUUID(), "Descr", LocalDateTime.now(), storeEntity.get());
         return new ResponseEntity<>(laptopRepository.save(laptop), HttpStatus.OK);
     }
 }
