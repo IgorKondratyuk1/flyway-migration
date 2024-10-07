@@ -1,0 +1,1 @@
+alter table public.mg_laptop add column price int;
